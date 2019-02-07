@@ -1,0 +1,11 @@
+@import "../../../../../styles/variables";
+
+.chatroom-list {
+    border-right: 2px solid rgb(201, 201, 201);
+    overflow-y: scroll;
+
+    .chatrrom-list-item {
+        border-bottom: 1px solid rgb(201, 201, 201);
+        padding: 1em;
+    }
+}
