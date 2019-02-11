@@ -17,6 +17,9 @@ import { ChatroomTitleBarComponent } from './pages/chat/components/chatroom-titl
 import { ChatMessageComponent } from './pages/chat/components/chat-message/chat-message.component';
 import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window/chatroom-window.component';
 
+import { AlertService } from './services/alert.service';
+import { AlertModule } from 'ngx-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,10 +37,11 @@ import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window
     BrowserModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
