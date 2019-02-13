@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
     } else {
 
-      const failedLoginAlert = new Alert('Your email or password were inavalid, try again.', AlertType.Danger);
+      const failedLoginAlert = new Alert('Your email or password were invalid, try again.', AlertType.Danger);
 
       setTimeout(() => {
 
