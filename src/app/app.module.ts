@@ -26,6 +26,9 @@ import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
 import { AuthService } from './services/auth.service';
 
+// Guards
+import { AuthGuard } from './guards/auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,12 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     NgxLoadingModule.forRoot({})
   ],
-  providers: [AlertService, LoadingService, AuthService],
+  providers: [
+    AlertService,
+    LoadingService,
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
