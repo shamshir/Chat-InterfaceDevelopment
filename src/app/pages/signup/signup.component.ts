@@ -66,11 +66,11 @@ export class SignupComponent implements OnInit, OnDestroy {
       );
     } else {
 
-      const failedLoginAlert = new Alert('Your email is already registered, try again.', AlertType.Danger);
+      const failedSignupAlert = new Alert('Your email is already registered, try again.', AlertType.Danger);
 
       this.loadingService.isLoading.next(false);
 
-      this.alertService.alerts.next(failedLoginAlert);
+      this.alertService.alerts.next(failedSignupAlert);
     }
   }
 
