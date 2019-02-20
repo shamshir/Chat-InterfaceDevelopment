@@ -20,7 +20,7 @@ export class AuthService {
     private alertService: AlertService,
     private afAuth: AngularFireAuth,
     private db: AngularFirestore
-    ) {
+  ) {
     this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
       if (user) {
         return this.db.doc<User>(`users/${user.uid}`).valueChanges();
@@ -58,9 +58,10 @@ export class AuthService {
   }
 
   public logout(): void {
-    // Call Firebase logout function
-    this.router.navigate(['/login']);
-    this.alertService.alerts.next(new Alert('You have been signed out.'));
+    this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+      this.alertService.alerts.next(new Alert('You have been signed out.'));
+    });
   }
 
 }
