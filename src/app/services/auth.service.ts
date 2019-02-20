@@ -50,8 +50,11 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Observable<boolean> {
-    // Call Firebase login function
-    return of(true);
+    return from(
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then((user) => true)
+        .catch((err) => false)
+    )
   }
 
   public logout(): void {
