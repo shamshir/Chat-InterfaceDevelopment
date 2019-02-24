@@ -14,6 +14,7 @@ export class ChatInputComponent implements OnInit {
   ngOnInit() {
   }
 
+  /* The method submit() prints the written message in the console log */
   public submit(message: string): void {
 
     console.log('New Message', message);

@@ -21,6 +21,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private db: AngularFirestore
   ) {
+    /* Checks if a user is already logged in */
     this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
       if (user) {
         return this.db.doc<User>(`users/${user.uid}`).valueChanges();
@@ -30,6 +31,7 @@ export class AuthService {
     }))
   }
 
+  /* Adds the user to the database */
   public signup(firstName: string, lastName: string, email: string, password: string): Observable<boolean> {
     return from(
       this.afAuth.auth.createUserWithEmailAndPassword(email, password)
@@ -49,6 +51,7 @@ export class AuthService {
     );
   }
 
+  /* Checks if user and password are found together on the database */
   public login(email: string, password: string): Observable<boolean> {
     return from(
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
@@ -57,6 +60,7 @@ export class AuthService {
     )
   }
 
+  /* Logs the user out from the browser */
   public logout(): void {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);

@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
+  /* Create the fields of the form */
   private createForm(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -48,21 +49,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
   }
 
+  /* Submit the data for validation against the database */
   public submit(): void {
 
     if (this.loginForm.valid) {
 
+      /* Display loading screen and obtain form values */
       this.loadingService.isLoading.next(true);
       const { email, password } = this.loginForm.value;
 
+      /* Validate the values and act accordingly */
       this.subscriptions.push(
         this.auth.login(email, password).subscribe(success => {
           if (success) {
-            this.router.navigateByUrl(this.returnUrl);
+            this.router.navigateByUrl(this.returnUrl); // Validation Success -> Go to /chat
           } else {
-            this.displayFailedLogin();
+            this.displayFailedLogin(); // Validation Failure -> Display Alert
           }
-          this.loadingService.isLoading.next(false);
+          this.loadingService.isLoading.next(false); // In any case -> Deactivate loading screen
         })
       );
     } else {
@@ -71,6 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* Display alert message of failed login attempt */
   private displayFailedLogin(): void {
 
     const failedLoginAlert = new Alert('Your email or password were invalid, try again.', AlertType.Danger);

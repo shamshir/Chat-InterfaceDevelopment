@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  /* If the atribute currentUser is null, the user is not logged in */
   public currentUser: any = null;
 
   constructor(private auth: AuthService) { }

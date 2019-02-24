@@ -40,6 +40,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
+  /* Create the fields of the form */
   private createForm(): void {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.required]],
@@ -49,23 +50,27 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
   }
 
+  /* Submit the form data to the database */
   public submit(): void {
 
     if (this.signupForm.valid) {
 
+      /* Display loading screen and obtain form values */
       this.loadingService.isLoading.next(true);
       const { firstName, lastName, email, password } = this.signupForm.value;
 
+      /* Validate the values and act accordingly */
       this.subscriptions.push(
         this.auth.signup(firstName, lastName, email, password).subscribe(success => {
           if (success) {
-            this.router.navigateByUrl(this.returnUrl);
+            this.router.navigateByUrl(this.returnUrl); // Validation Success -> Go to /chat
           }
           this.loadingService.isLoading.next(false);
         })
       );
     } else {
 
+      /* Display Alert */
       const failedSignupAlert = new Alert('Your email is already registered, try again.', AlertType.Danger);
 
       this.loadingService.isLoading.next(false);

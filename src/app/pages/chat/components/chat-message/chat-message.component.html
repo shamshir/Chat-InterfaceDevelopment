@@ -1,6 +1,7 @@
 <div class="chat-message d-flex">
   <img [src]="message.sender.photoUrl" class="rounded-circle" />
   <div class="bubble d-flex flex-column">
+    <!-- The info of the message object is binded to the HTML tags -->
     <div class="name">
       {{message.sender.firstName}} {{message.sender.lastName}}
     </div>
