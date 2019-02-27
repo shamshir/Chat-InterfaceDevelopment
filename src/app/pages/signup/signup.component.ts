@@ -71,7 +71,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     } else {
 
       /* Display Alert */
-      const failedSignupAlert = new Alert('Your email is already registered, try again.', AlertType.Danger);
+      const failedSignupAlert = new Alert('Your email or password is not valid, try again.', AlertType.Danger);
 
       this.loadingService.isLoading.next(false);
 
